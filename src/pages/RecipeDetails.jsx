@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
 
 function RecipeDetails() {
@@ -35,7 +35,12 @@ function RecipeDetails() {
     }
 
     if (error) {
-        return <p>{error}</p>;
+        return (
+            <div>
+                <Link to="/recipes">חזרה לרשימה</Link>
+                <p>{error}</p>
+            </div>
+        );
     }
 
     if (!recipe) {
@@ -44,6 +49,8 @@ function RecipeDetails() {
 
     return (
         <div>
+            <Link to="/recipes">חזרה לרשימה</Link>
+
             <h1>{recipe.name}</h1>
 
             <p>
@@ -67,6 +74,7 @@ function RecipeDetails() {
                     <li key={index}>{step}</li>
                 ))}
             </ol>
+            <Link to={`/recipes/${Number(id) + 1}`}>המתכון הבא</Link>
         </div>
     );
 }
